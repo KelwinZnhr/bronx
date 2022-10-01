@@ -1,4 +1,5 @@
-import 'package:bronx/calculette.dart';
+//import 'package:bronx/calculette.dart';
+import 'package:bronx/wordle_clone.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -16,8 +17,8 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
           useMaterial3: true,
           brightness: Brightness.dark,
-          colorSchemeSeed: Color.fromARGB(255, 255, 193, 24)),
-      home: const Computer(),
+          colorSchemeSeed: const Color.fromARGB(255, 255, 193, 24)),
+      home: const WordleClone(),
     );
   }
 }

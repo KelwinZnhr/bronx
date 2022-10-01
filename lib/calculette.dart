@@ -1,13 +1,4 @@
-import 'dart:ffi';
-
 import 'package:flutter/material.dart';
-
-class Computer extends StatefulWidget {
-  const Computer({super.key});
-
-  @override
-  State<Computer> createState() => _ComputerState();
-}
 
 const valueStyle =
     TextStyle(fontWeight: FontWeight.bold, fontSize: 44, color: Colors.white);
@@ -41,6 +32,13 @@ String expression = "";
 
 String value = "0";
 const inIt = [3, 7, 11, 14, 15];
+
+class Computer extends StatefulWidget {
+  const Computer({super.key});
+
+  @override
+  State<Computer> createState() => _ComputerState();
+}
 
 class _ComputerState extends State<Computer> {
   @override
