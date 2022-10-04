@@ -56,54 +56,92 @@ class _WordleCloneState extends State<WordleClone> {
           //     fontWeight: FontWeight.bold,
           //   ),
           // ),
-          Padding(
-            padding: const EdgeInsets.all(4.0),
-            child: Center(
-              child: SizedBox(
-                width: 400,
-                height: 400,
-                child: GridView.builder(
-                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 5,
-                  ),
-                  itemCount: 25,
-                  itemBuilder: (BuildContext context, int index) {
-                    Color verify() {
-                      if (word.length == 5 &&
-                          compareTo.contains(word[index % 5]) &&
-                          word[index % 5] == compareTo[index % 5]) {
-                        return Colors.green;
-                      } else if (word.length == 5 &&
-                          compareTo.contains(word[index % 5])) {
-                        return Colors.yellow;
-                      } else if (word.length == 5) {
-                        return Colors.black;
-                      } else {
-                        return Colors.grey;
-                      }
-                    }
-
-                    return Padding(
-                      padding: const EdgeInsets.all(4.0),
-                      child: Container(
-                        color: verify(),
-                        child: Center(
-                          child: Text(
-                            word.length == 5
-                                ? word[index % 5].toUpperCase()
-                                : "",
-                            style: const TextStyle(
-                              fontSize: 32,
-                              fontWeight: FontWeight.bold,
+          Stack(
+            children: [
+              Padding(
+                padding: const EdgeInsets.all(4.0),
+                child: Center(
+                  child: SizedBox(
+                    width: 400,
+                    height: 480,
+                    child: GridView.builder(
+                      gridDelegate:
+                          const SliverGridDelegateWithFixedCrossAxisCount(
+                        crossAxisCount: 5,
+                      ),
+                      itemCount: 30,
+                      itemBuilder: (BuildContext context, int index) {
+                        return Padding(
+                          padding: const EdgeInsets.all(4.0),
+                          child: Container(
+                            color: Colors.grey,
+                            child: const Center(
+                              child: Text(
+                                "",
+                                style: TextStyle(
+                                  fontSize: 32,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
                             ),
                           ),
-                        ),
-                      ),
-                    );
-                  },
+                        );
+                      },
+                    ),
+                  ),
                 ),
               ),
-            ),
+              Padding(
+                padding: const EdgeInsets.all(4.0),
+                child: Center(
+                  child: SizedBox(
+                    width: 400,
+                    height: 480,
+                    child: GridView.builder(
+                      gridDelegate:
+                          const SliverGridDelegateWithFixedCrossAxisCount(
+                        crossAxisCount: 5,
+                      ),
+                      itemCount: 30,
+                      itemBuilder: (BuildContext context, int index) {
+                        Color verify() {
+                          if (word.length == 5 &&
+                              compareTo.contains(word[index % 5]) &&
+                              word[index % 5] == compareTo[index % 5]) {
+                            return Colors.green;
+                          } else if (word.length == 5 &&
+                              compareTo.contains(word[index % 5])) {
+                            return Colors.yellow;
+                          } else if (word.length == 5) {
+                            return Colors.black;
+                          } else {
+                            return Colors.grey;
+                          }
+                        }
+
+                        return Padding(
+                          padding: const EdgeInsets.all(4.0),
+                          child: Container(
+                            color: verify(),
+                            child: Center(
+                              child: Text(
+                                word.length == 5
+                                    ? word[index % 5].toUpperCase()
+                                    : "",
+                                style: const TextStyle(
+                                  fontSize: 32,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                            ),
+                          ),
+                        );
+                      },
+                    ),
+                  ),
+                ),
+              ),
+            ],
           ),
           Padding(
             padding: const EdgeInsets.all(16.0),

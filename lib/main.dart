@@ -17,7 +17,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
           useMaterial3: true,
           brightness: Brightness.dark,
-          colorSchemeSeed: const Color.fromARGB(255, 255, 193, 24)),
+          colorSchemeSeed: const Color.fromARGB(255, 123, 255, 0)),
       home: const WordleClone(),
     );
   }
