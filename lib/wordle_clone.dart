@@ -1,3 +1,4 @@
+import 'dart:developer';
 import 'dart:math';
 import 'package:english_words/english_words.dart';
 import 'package:flutter/material.dart';
@@ -13,10 +14,16 @@ void generateWord() async {
       able.add(data[i]);
     }
   }
+  compareTo = able[Random().nextInt(able.length)];
+  wording = "";
+  count = 6;
 }
 
 String word = "";
 late TextEditingController controller;
+int count = 6;
+
+String wording = "";
 
 class WordleClone extends StatefulWidget {
   const WordleClone({super.key});
@@ -30,7 +37,6 @@ class _WordleCloneState extends State<WordleClone> {
   void initState() {
     controller = TextEditingController();
     generateWord();
-    compareTo = able[Random().nextInt(able.length)];
 
     super.initState();
   }
@@ -39,6 +45,15 @@ class _WordleCloneState extends State<WordleClone> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        actions: [
+          IconButton(
+            onPressed: () {
+              generateWord();
+              setState(() {});
+            },
+            icon: const Icon(Icons.refresh),
+          ),
+        ],
         leading: const Icon(Icons.menu_rounded),
         title: const Text(
           "Wordle",
@@ -49,13 +64,13 @@ class _WordleCloneState extends State<WordleClone> {
       ),
       body: Column(
         children: [
-          // Text(
-          //   compareTo,
-          //   style: const TextStyle(
-          //     fontSize: 32,
-          //     fontWeight: FontWeight.bold,
-          //   ),
-          // ),
+          Text(
+            compareTo,
+            style: const TextStyle(
+              fontSize: 32,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
           Stack(
             children: [
               Padding(
@@ -90,7 +105,9 @@ class _WordleCloneState extends State<WordleClone> {
                     ),
                   ),
                 ),
-              ),
+              ).animate().fadeIn(
+                    duration: const Duration(milliseconds: 1000),
+                  ),
               Padding(
                 padding: const EdgeInsets.all(4.0),
                 child: Center(
@@ -102,15 +119,15 @@ class _WordleCloneState extends State<WordleClone> {
                           const SliverGridDelegateWithFixedCrossAxisCount(
                         crossAxisCount: 5,
                       ),
-                      itemCount: 30,
+                      itemCount: wording.length,
                       itemBuilder: (BuildContext context, int index) {
                         Color verify() {
                           if (word.length == 5 &&
-                              compareTo.contains(word[index % 5]) &&
-                              word[index % 5] == compareTo[index % 5]) {
+                              compareTo.contains(wording[index]) &&
+                              wording[index] == compareTo[index % 5]) {
                             return Colors.green;
                           } else if (word.length == 5 &&
-                              compareTo.contains(word[index % 5])) {
+                              compareTo.contains(wording[index])) {
                             return Colors.yellow;
                           } else if (word.length == 5) {
                             return Colors.black;
@@ -125,8 +142,8 @@ class _WordleCloneState extends State<WordleClone> {
                             color: verify(),
                             child: Center(
                               child: Text(
-                                word.length == 5
-                                    ? word[index % 5].toUpperCase()
+                                wording.isNotEmpty
+                                    ? wording[index].toUpperCase()
                                     : "",
                                 style: const TextStyle(
                                   fontSize: 32,
@@ -135,7 +152,9 @@ class _WordleCloneState extends State<WordleClone> {
                               ),
                             ),
                           ),
-                        );
+                        ).animate().fadeIn(
+                              duration: const Duration(milliseconds: 1000),
+                            );
                       },
                     ),
                   ),
@@ -148,13 +167,37 @@ class _WordleCloneState extends State<WordleClone> {
             child: SizedBox(
               width: 400,
               child: TextField(
+                enabled: count > 0 ? true : false,
                 controller: controller,
                 maxLength: 5,
                 onSubmitted: ((value) {
-                  if (value.length == 5 && able.contains(value)) {
+                  if (value.length == 5 && all.contains(value)) {
                     setState(() {
                       word = controller.text;
+                      wording += controller.text;
+
+                      count--;
+                      controller.clear();
                     });
+                  } else if (value.length == 5 &&
+                      all.contains(value) &&
+                      value == compareTo) {
+                    setState(() {
+                      word = controller.text;
+                      wording += controller.text;
+
+                      count--;
+                      controller.clear();
+                    });
+                    showDialog(
+                      context: context,
+                      builder: (context) {
+                        return const Dialog(
+                          child: Text("You found it, good job"),
+                        );
+                      },
+                    );
+                    count = 0;
                   } else if (!able.contains(value)) {
                     ScaffoldMessenger.of(context).showSnackBar(
                       SnackBar(
