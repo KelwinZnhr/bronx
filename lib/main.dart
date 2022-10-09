@@ -1,6 +1,8 @@
 //import 'package:bronx/calculette.dart';
-import 'package:bronx/wordle_clone.dart';
+import 'package:bronx/flutter_word_decoder.dart';
+//import 'package:bronx/wordle_clone.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 void main() {
   runApp(const MyApp());
@@ -18,7 +20,9 @@ class MyApp extends StatelessWidget {
           useMaterial3: true,
           brightness: Brightness.dark,
           colorSchemeSeed: const Color.fromARGB(255, 123, 255, 0)),
-      home: const WordleClone(),
+      home: const ProviderScope(
+        child: WordDecoder(),
+      ),
     );
   }
 }
