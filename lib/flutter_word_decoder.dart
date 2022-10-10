@@ -1,5 +1,6 @@
 import 'package:english_words/english_words.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 final myListWord = Provider((ref) => all);
@@ -45,17 +46,21 @@ class _WordDecoderState extends ConsumerState<WordDecoder> {
                 itemBuilder: (BuildContext context, int index) {
                   return Padding(
                     padding: const EdgeInsets.all(8.0),
-                    child: Container(
-                      color: Colors.orange,
-                      height: 20,
-                      width: 50,
-                      child: Center(
-                        child: Text(
-                          foundWord[index].toUpperCase(),
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(20),
+                      child: Container(
+                        color: Colors.orange,
+                        height: 20,
+                        width: 50,
+                        child: Center(
+                          child: Text(
+                            foundWord[index].toUpperCase(),
+                            style: const TextStyle(fontWeight: FontWeight.bold),
+                          ),
                         ),
                       ),
                     ),
-                  );
+                  ).animate().fadeIn();
                 },
               ),
             ),
@@ -81,22 +86,18 @@ class _WordDecoderState extends ConsumerState<WordDecoder> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Wrap(
-                    children: [
-                      for (int i = 3; i <= 6; i++)
-                        ElevatedButton(
-                          child: Text("$i",
-                              style: TextStyle(
-                                  color: i == selectedNumber
-                                      ? Colors.green
-                                      : Colors.white)),
-                          onPressed: () {
-                            selectedNumber = i;
-                            setState(() {});
-                          },
-                        ),
-                    ],
-                  ),
+                  for (int i = 3; i <= 6; i++)
+                    ElevatedButton(
+                      child: Text("$i",
+                          style: TextStyle(
+                              color: i == selectedNumber
+                                  ? Colors.green
+                                  : Colors.white)),
+                      onPressed: () {
+                        selectedNumber = i;
+                        setState(() {});
+                      },
+                    ),
                 ],
               ),
             )
