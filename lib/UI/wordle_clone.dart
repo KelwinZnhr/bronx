@@ -1,4 +1,3 @@
-import 'dart:developer';
 import 'dart:math';
 import 'package:english_words/english_words.dart';
 import 'package:flutter/material.dart';
@@ -63,7 +62,6 @@ class _WordleCloneState extends State<WordleClone> {
             icon: const Icon(Icons.remove_red_eye),
           ),
         ],
-        leading: const Icon(Icons.menu_rounded),
         title: const Text(
           "Wordle",
           style: TextStyle(

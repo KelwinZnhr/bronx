@@ -29,12 +29,14 @@ class _WordDecoderState extends ConsumerState<WordDecoder> {
   Widget build(BuildContext context) {
     //final seekHere = ref.watch(myListWord);
     return Scaffold(
+      appBar: AppBar(
+        title: const Text("Anagram Finder",
+            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24)),
+      ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
           children: [
-            const Text("Anagram Finder",
-                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24)),
             SizedBox(
               width: 300,
               height: 300,

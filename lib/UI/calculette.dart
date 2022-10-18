@@ -51,7 +51,6 @@ class _ComputerState extends State<Computer> {
             bottomRight: Radius.circular(10),
           ),
         ),
-        leading: const Icon(Icons.menu),
         title: const Text("Standard"),
       ),
       backgroundColor: Colors.black,
@@ -86,7 +85,7 @@ class _ComputerState extends State<Computer> {
             ),
             SizedBox(
               height: 400,
-              width: MediaQuery.of(context).size.width,
+              width: 400,
               child: GridView.builder(
                 physics: const NeverScrollableScrollPhysics(),
                 gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
