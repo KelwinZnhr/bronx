@@ -1,5 +1,6 @@
 import 'package:bronx/UI/calculette.dart';
 import 'package:bronx/UI/course_showcase.dart';
+import 'package:bronx/UI/desktop_try.dart';
 import 'package:bronx/UI/flutter_word_decoder.dart';
 import 'package:bronx/UI/wordle_clone.dart';
 import 'package:flutter/material.dart';
@@ -206,6 +207,15 @@ class MainScreen extends ConsumerWidget {
                   ),
                   const SizedBox(
                     height: 10,
+                  ),
+                  ElevatedButton(
+                    onPressed: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: ((context) => const DeskTry())));
+                    },
+                    child: const Text("Go to Responsive layout"),
                   ),
                 ],
               ),
