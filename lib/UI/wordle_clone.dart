@@ -166,6 +166,7 @@ class _WordleCloneState extends State<WordleClone> {
                                   style: const TextStyle(
                                     fontSize: 32,
                                     fontWeight: FontWeight.bold,
+                                    color: Colors.white,
                                   ),
                                 ),
                               ),

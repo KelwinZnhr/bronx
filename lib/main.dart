@@ -1,5 +1,6 @@
 import 'package:bronx/UI/course_showcase.dart';
 import 'package:bronx/UI/calculette.dart';
+import 'package:bronx/UI/desktop_try.dart';
 import 'package:bronx/UI/flutter_word_decoder.dart';
 import 'package:bronx/UI/main_screen.dart';
 import 'package:bronx/UI/wordle_clone.dart';
@@ -21,11 +22,11 @@ class MyApp extends StatelessWidget {
       title: 'Bronx',
       theme: ThemeData(
         useMaterial3: true,
-        brightness: Brightness.dark,
+        brightness: Brightness.light,
         colorSchemeSeed: const Color.fromARGB(255, 123, 255, 0),
       ),
       home: const ProviderScope(
-        child: MainScreen(),
+        child: DeskTry(),
       ),
     );
   }

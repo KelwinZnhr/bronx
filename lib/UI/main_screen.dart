@@ -30,7 +30,7 @@ class MainScreen extends ConsumerWidget {
                     child: ClipRRect(
                       borderRadius: BorderRadius.circular(5),
                       child: Container(
-                        color: Colors.black,
+                        color: Colors.yellow,
                         child: Padding(
                           padding: const EdgeInsets.all(16.0),
                           child: SizedBox(
