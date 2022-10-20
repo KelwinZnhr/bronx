@@ -51,7 +51,7 @@ class _CourseShowcaseState extends State<CourseShowcase> {
                   if (snapshot.hasError) {
                     return const Text("Error");
                   } else if (snapshot.hasData) {
-                    var dataa = snapshot.data!;
+                    var dataStream = snapshot.data!;
                     return GridView.builder(
                       gridDelegate:
                           const SliverGridDelegateWithFixedCrossAxisCount(
@@ -69,7 +69,7 @@ class _CourseShowcaseState extends State<CourseShowcase> {
                               width: 50,
                               child: Center(
                                 child: Text(
-                                  dataa[index].title,
+                                  dataStream[index].title,
                                   style: const TextStyle(
                                     fontWeight: FontWeight.bold,
                                   ),
@@ -125,6 +125,7 @@ class _CourseShowcaseState extends State<CourseShowcase> {
                                             course.title = controller.text;
                                             await isarDb.saveCourse(course);
                                             controller.clear();
+                                            if (!mounted) return;
                                             Navigator.pop(context);
                                           },
                                           child: const Text("Save course"),
