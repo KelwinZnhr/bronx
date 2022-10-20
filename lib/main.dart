@@ -19,6 +19,11 @@ class MyApp extends StatelessWidget {
         brightness: Brightness.light,
         colorSchemeSeed: const Color.fromARGB(255, 123, 255, 0),
       ),
+      darkTheme: ThemeData(
+        useMaterial3: true,
+        brightness: Brightness.dark,
+        colorSchemeSeed: const Color.fromARGB(255, 123, 255, 0),
+      ),
       home: const ProviderScope(
         child: MainScreen(),
       ),

@@ -1,8 +1,9 @@
 import 'package:bronx/entities/course.dart';
 import 'package:bronx/service/isar_service.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 
-IsarService isarDb = IsarService();
+late IsarService isarDb;
 late TextEditingController controller;
 
 class CourseShowcase extends StatefulWidget {
@@ -15,6 +16,7 @@ class CourseShowcase extends StatefulWidget {
 class _CourseShowcaseState extends State<CourseShowcase> {
   @override
   void initState() {
+    isarDb = IsarService();
     controller = TextEditingController();
     super.initState();
   }
@@ -50,10 +52,33 @@ class _CourseShowcaseState extends State<CourseShowcase> {
                     return const Text("Error");
                   } else if (snapshot.hasData) {
                     var dataa = snapshot.data!;
-                    return ListView.builder(
+                    return GridView.builder(
+                      gridDelegate:
+                          const SliverGridDelegateWithFixedCrossAxisCount(
+                        crossAxisCount: 3,
+                      ),
                       itemCount: snapshot.data!.length,
                       itemBuilder: (BuildContext context, int index) {
-                        return Text(dataa[index].title);
+                        return Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(20),
+                            child: Container(
+                              color: Colors.orange,
+                              height: 20,
+                              width: 50,
+                              child: Center(
+                                child: Text(
+                                  dataa[index].title,
+                                  style: const TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ),
+                        ).animate().fadeIn();
+                        //
                       },
                     );
                   }
@@ -79,6 +104,8 @@ class _CourseShowcaseState extends State<CourseShowcase> {
                                 child: Padding(
                                   padding: const EdgeInsets.all(8.0),
                                   child: Column(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceEvenly,
                                     children: [
                                       const Text(
                                         "Enter course name",
@@ -90,13 +117,19 @@ class _CourseShowcaseState extends State<CourseShowcase> {
                                       TextField(
                                         controller: controller,
                                       ),
-                                      ElevatedButton(
+                                      Padding(
+                                        padding: const EdgeInsets.all(8.0),
+                                        child: ElevatedButton(
                                           onPressed: () async {
                                             Course course = Course();
                                             course.title = controller.text;
                                             await isarDb.saveCourse(course);
+                                            controller.clear();
+                                            Navigator.pop(context);
                                           },
-                                          child: const Text("Save course"))
+                                          child: const Text("Save course"),
+                                        ),
+                                      )
                                     ],
                                   ),
                                 ),

@@ -43,7 +43,7 @@ class IsarService {
 
   Stream<List<Course>> listenToCourses() async* {
     final isar = await db;
-    yield* isar.courses.where().watch();
+    yield* isar.courses.where().watch(fireImmediately: true);
   }
 
   Future<void> cleanDb() async {

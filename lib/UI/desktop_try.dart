@@ -11,7 +11,7 @@ class DeskTry extends StatelessWidget {
         Padding(
           padding: const EdgeInsets.all(8.0),
           child: Container(
-            color: Color.fromARGB(255, 255, 114, 161),
+            color: const Color.fromARGB(255, 255, 114, 161),
             height: 400,
           ),
         )
@@ -19,7 +19,7 @@ class DeskTry extends StatelessWidget {
     return BottomNavigationBarTheme(
       data: const BottomNavigationBarThemeData(
         unselectedItemColor: Colors.black,
-        selectedItemColor: Colors.black,
+        selectedItemColor: Colors.yellow,
         backgroundColor: Colors.white,
       ),
       child: AdaptiveScaffold(
@@ -42,7 +42,7 @@ class DeskTry extends StatelessWidget {
           itemBuilder: ((context, index) => children[index]),
         ),
         secondaryBody: (context) => Container(
-          color: Color.fromARGB(255, 255, 104, 93),
+          color: const Color.fromARGB(255, 255, 104, 93),
         ),
         smallSecondaryBody: AdaptiveScaffold.emptyBuilder,
       ),
