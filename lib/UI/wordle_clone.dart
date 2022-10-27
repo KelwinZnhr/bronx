@@ -72,7 +72,7 @@ class _WordleCloneState extends State<WordleClone> {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            showAnswer
+            showAnswer || count == 0
                 ? Text(
                     compareTo.toUpperCase(),
                     style: const TextStyle(
